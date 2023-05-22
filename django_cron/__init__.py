@@ -180,7 +180,11 @@ class CronJobManager(object):
 
     def __enter__(self):
         from django_cron.models import CronJobLog
-        self.cron_log = CronJobLog(start_time=get_current_time())
+        ct = get_current_time()
+        print(ct)
+        ct = ct.replace(second=0, microsecond=0)
+        print(ct)
+        self.cron_log = CronJobLog(start_time=ct)
 
         return self
 
